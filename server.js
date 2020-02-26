@@ -55,9 +55,7 @@ const addTags = () => {
         let nodeId = tags[i].nodeId;
         let browseName = tags[i].browseName;
         let dataType = tags[i].dataType;
-        console.log(tags[i])
-        let value = RMS[tags[i].pos];
-        console.log(value)
+        let value = RMS[tags[i].axis];
 
         namespace.addVariable({
             componentOf: device,
