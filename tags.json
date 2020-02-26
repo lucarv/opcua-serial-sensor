@@ -16,6 +16,6 @@
         "browseName": "Vibration on Z Axis",
         "dataType": "Int32",
         "axis": "z"
-    },
+    }
 
 ]
