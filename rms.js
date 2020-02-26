@@ -7,20 +7,19 @@ var RMS = {
 };
 
 const calcRMS = (readings) => {
+    cxonasole.log(readings)
   var x, y, z;
   var xs = [],
     ys = [],
     zs = [];
 
-  for (var i = 0; i < process.env.BUFFER_SIZE; i += 6) {
-    x = '0x' + readings.substring(i, i + 2);
-    y = '0x' + readings.substring(i + 2, i + 4);
-    z = '0x' + readings.substring(i + 4, i + 6);
+  for (var i = 0; i < 512; i += 3) {
 
-    xs.push(parseInt(x));
-    ys.push(parseInt(y));
-    zs.push(parseInt(z));
+    xs.push(readings[i]);
+    ys.push(readings[i + 1]);
+    zs.push(readings[i + 2]);
   }
+
 
   if (xs.length > 0) {
     x = xs.reduce(rms) / xs.length;

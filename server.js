@@ -18,7 +18,7 @@ const parser = port.pipe(new Readline({
 parser.on('data',
     function (bucket) {
         if (bucket.length == 1538) {
-            let myByteArray = convertStringToUTF8ByteArray(bucket);
+            let myByteArray = convertStringToUTF8ByteArray(bucket.substring(0, 1536));
             let RMS = calcRMS(myByteArray);
             console.log(RMS)
         }
