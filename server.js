@@ -56,7 +56,7 @@ const addTags = () => {
         let browseName = tags[i].browseName;
         let dataType = tags[i].dataType;
         let value = RMS[tags[i].pos];
-        console.log(value)
+        console.log(RMS)
 
         namespace.addVariable({
             componentOf: device,
@@ -95,14 +95,13 @@ const construct_my_address_space = () => {
 }
 
 const g = () => {
-    console.log(server);
     const endpointUrl = server.endpoints[0].endpointDescriptions()[0].endpointUrl;
     console.log(`Server ${endpointUrl} is now listening ... ( press CTRL+C to stop)`);
 
 }
 
 const f = () => {
-    console.log("initialize server now")
+    console.log("Initialize server now... ")
     construct_my_address_space();
     addTags();
     server.start(g)
