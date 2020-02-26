@@ -8,13 +8,16 @@ const port = new SerialPort('/dev/ttyUSB0', {
 
 const Readline = require('@serialport/parser-readline')
 const parser = port.pipe(new Readline({
-    delimiter: [0x5e, 0xc0]})
-    )
+    delimiter: [0x5e, 0xc0]
+}))
 
 parser.on('data',
     function (bucket) {
-        if (bucket.length == 1538)
-            console.log(bucket.substring(0,2))
+        if (bucket.length == 1538) {
+            for (var j = 1, j < 1537; j++)
+                process.stdout(parseInt(bucket.substring(0, j)))
+            console.log('.....')
+        }
     }
 )
 
