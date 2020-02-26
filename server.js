@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 function convertStringToUTF8ByteArray(str) {
-    let binaryArray = new Uint8Array(str.length)
+    let binaryArray = new Int8Array(str.length)
     Array.prototype.forEach.call(binaryArray, function (el, idx, arr) { arr[idx] = str.charCodeAt(idx) })
     return binaryArray
 }
