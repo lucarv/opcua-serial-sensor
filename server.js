@@ -18,7 +18,7 @@ const Readline = require('@serialport/parser-readline')
   
   // Switches the port into "flowing mode"
   port.on('data', function (data) {
-    console.log('Data:', data)
+    console.log('Data:', data[0])
   })
  /* 
 
