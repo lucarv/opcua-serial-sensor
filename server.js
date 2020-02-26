@@ -13,7 +13,7 @@ const parser = port.pipe(new Readline({
 
 parser.on('data',
     function (bucket) {
-        if (bucklet.length == 1538)
+        if (bucket.length == 1538)
             console.log(bucket.substring(0,2))
     }
 )
