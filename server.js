@@ -38,16 +38,16 @@ const server = new opcua.OPCUAServer({
     port: opc_port, // the port of the listening socket of the server
     resourcePath: process.env.RESOURCEPATH, // this path will be added to the endpoint resource name
     buildInfo: {
-        productName: "hbvu simple server",
+        productName: "seco vibration sensor",
         buildNumber: "7658",
-        buildDate: new Date(2019, 9, 28)
+        buildDate: new Date(2020, 2, 29)
     }
 });
 
 const addTags = () => {
     b('# Adding TAGS')
     const device = namespace.addFolder("ObjectsFolder", {
-        browseName: "Alexander Pressure Sensor"
+        browseName: "Seco Vibration Sensor"
     });
 
     for (var i = 0; i < tags.length; i++) {
