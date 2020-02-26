@@ -7,7 +7,6 @@ var RMS = {
 };
 
 const calcRMS = (readings) => {
-    cxonasole.log(readings)
   var x, y, z;
   var xs = [],
     ys = [],
