@@ -2,19 +2,19 @@
     {
         "nodeId": "s=x-axis",
         "browseName": "Vibration on X Axis",
-        "dataType": "Int32",
+        "dataType": "Double",
         "axis": "x"
     },
     {
         "nodeId": "s=y-axis",
         "browseName": "Vibration on Y Axis",
-        "dataType": "Int32",
+        "dataType": "Double",
         "axis": "y"
     },
     {
         "nodeId": "s=z-axis",
         "browseName": "Vibration on Z Axis",
-        "dataType": "Int32",
+        "dataType": "Double",
         "axis": "z"
     }
 
