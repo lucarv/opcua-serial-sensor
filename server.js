@@ -21,9 +21,6 @@ parser.on('data',
         if (bucket.length == 1538) {
             let myByteArray = convertStringToUTF8ByteArray(bucket.substring(0, 1536));
             RMS = calcRMS(myByteArray);
-            console.log(`X: ${RMS["x"]}`)
-            console.log(`Y: ${RMS["y"]}`)
-            console.log(`Z: ${RMS["z"]}`)
         }
     }
 )
@@ -67,9 +64,7 @@ const addTags = () => {
             dataType: dataType,
             value: {
                 get: function () {
-                    //var seed = 10 + new Date() / 10000.0;
                     b('...........................................')
-
                     var idx = tags.findIndex(i => i.nodeId === nodeId);
                     if (tags[idx].hasOwnProperty('func')) {
                         value = eval(func)
@@ -112,4 +107,4 @@ const f = () => {
     server.start(g)
 }
 
-//server.initialize(f)
+server.initialize(f)
