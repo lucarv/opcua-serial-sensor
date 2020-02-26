@@ -12,7 +12,7 @@ const parser = port.pipe(new Readline({
 }))
 parser.on('data',
     function (x) {
-        console.log('BYTE: ', x.length),
+        if (x.length == 1538)
             console.log(typeof x)
     }
 )
