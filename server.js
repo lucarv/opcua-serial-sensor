@@ -1,13 +1,23 @@
 require('dotenv').config()
 const SerialPort = require('serialport')
-const Readline = require('@serialport/parser-readline')
+
+
 const port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 500000
-})
-const parser = new Readline()
-port.pipe(parser)
-parser.on('data', console.log)
+  })
 
+const Readline = require('@serialport/parser-readline')
+
+  port.on('readable', function () {
+    console.log('Data:', port.read())
+  })
+  
+  // Switches the port into "flowing mode"
+  port.on('data', function (data) {
+    console.log('Data:', data)
+  })
+  
+/*
 const os = require('os')
 
 const a = require('debug')('server.initialize:a');
@@ -70,9 +80,9 @@ const addTags = () => {
                 set: function (variant) {
                     if (tags[idx].hasOwnProperty('storedValue')) {
                         b('...........................................')
-                        b(`value set for ${nodeId}: ${variant.value}`);
-                        tags[idx].storedValue = parseInt(variant.value);
-                        return opcua.StatusCodes.Good;
+                            b(`value set for ${nodeId}: ${variant.value}`);
+                            tags[idx].storedValue = parseInt(variant.value);
+                    return opcua.StatusCodes.Good;
                     } else return opcua.statusCodes.Bad
                 }
             }
@@ -100,3 +110,5 @@ const f = () => {
 }
 
 //server.initialize(f)
+
+*/
