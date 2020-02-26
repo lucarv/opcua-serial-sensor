@@ -7,7 +7,7 @@ const port = new SerialPort('/dev/ttyUSB0', {
   })
   
 const Readline = require('@serialport/parser-readline')
-const parser = port.pipe(new Readline({ delimiter: '5ec0', encoding: 'hex' }))
+const parser = port.pipe(new Readline({ delimiter: '\n', encoding: 'hex' }))
 parser.on('data', function(x){
 console.log(x)})
 
