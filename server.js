@@ -56,7 +56,6 @@ const addTags = () => {
         let browseName = tags[i].browseName;
         let dataType = tags[i].dataType;
         let value = RMS[tags[i].axis];
-        console.log(value)
 
         namespace.addVariable({
             componentOf: device,
@@ -65,12 +64,12 @@ const addTags = () => {
             dataType: dataType,
             value: {
                 get: function () {
-                    b('...........................................')
+                    console.log('...........................................')
                     var idx = tags.findIndex(i => i.nodeId === nodeId);
                     if (tags[idx].hasOwnProperty('func')) {
                         value = eval(func)
                     }
-                    b(`value calculated for ${nodeId}: ${value}`);
+                    console.log(`value calculated for ${nodeId}: ${value}`);
                     return new opcua.Variant({
                         dataType: dataType,
                         value: value
@@ -78,8 +77,8 @@ const addTags = () => {
                 },
                 set: function (variant) {
                     if (tags[idx].hasOwnProperty('storedValue')) {
-                        b('...........................................')
-                            b(`value set for ${nodeId}: ${variant.value}`);
+                        console.log('...........................................')
+                        console.log(`value set for ${nodeId}: ${variant.value}`);
                             tags[idx].storedValue = parseInt(variant.value);
                     return opcua.StatusCodes.Good;
                     } else return opcua.statusCodes.Bad
