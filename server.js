@@ -1,14 +1,14 @@
 require('dotenv').config()
 const SerialPort = require('serialport')
+const ByteLength = require('@serialport/parser-byte-length')
 const port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 500000
-  })
+})
 
-  const ByteLength = require('@serialport/parser-byte-length')
-  const port = new SerialPort('/dev/tty-usbserial1')
-  
-  const parser = port.pipe(new ByteLength({length: 1580}))
-  parser.on('data', console.log)
+const parser = port.pipe(new ByteLength({
+    length: 1580
+}))
+parser.on('data', console.log)
 
 const os = require('os')
 
@@ -72,9 +72,9 @@ const addTags = () => {
                 set: function (variant) {
                     if (tags[idx].hasOwnProperty('storedValue')) {
                         b('...........................................')
-                            b(`value set for ${nodeId}: ${variant.value}`);
-                            tags[idx].storedValue = parseInt(variant.value);
-                    return opcua.StatusCodes.Good;
+                        b(`value set for ${nodeId}: ${variant.value}`);
+                        tags[idx].storedValue = parseInt(variant.value);
+                        return opcua.StatusCodes.Good;
                     } else return opcua.statusCodes.Bad
                 }
             }
@@ -102,5 +102,3 @@ const f = () => {
 }
 
 //server.initialize(f)
-
-
