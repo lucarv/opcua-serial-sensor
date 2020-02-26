@@ -1,46 +1,21 @@
 [
     {
-        "nodeId": "s=010",
-        "browseName": "SomeInt32",
+        "nodeId": "s=x-axis",
+        "browseName": "Vibration on X Axis",
         "dataType": "Int32",
-        "func": "seed + 1",
-        "seed": 0,
-        "storedValue": null
+        "axis": "x"
     },
     {
-        "nodeId": "s=freemem",
-        "browseName": "Free Memory",
-        "dataType": "Double",
-        "func": "os.freemem()"
-    },
-    {
-        "nodeId": "s=uptime",
-        "browseName": "System Uptime in seconds",
-        "dataType": "Double",
-        "func": "os.uptime()"
-    },
-    {
-        "nodeId": "s=load_avg_1m",
-        "browseName": "Load Average Last Minute",
-        "dataType": "Double",
-        "func": "os.loadavg()[0]"
-    },
-    {
-        "nodeId": "s=load_avg_5m",
-        "browseName": "Load Average Last 5 Minutes",
-        "dataType": "Double",
-        "func": "os.loadavg()[1]"
-    },
-    {
-        "nodeId": "s=/Plc/DB521.DBB6",
-        "browseName": "tag(1) from skf",
-        "dataType": "Double",
-        "func": "Math.random()"
-    },
-    {
-        "nodeId": "s=/NC/_N_NC_GD3_ACX/COUNTER",
-        "browseName": "tag(2) from skf",
+        "nodeId": "s=y-axis",
+        "browseName": "Vibration on Y Axis",
         "dataType": "Int32",
-        "func": "parseInt((Math.random() * 100), 10)"
-    }
+        "axis": "y"
+    },
+    {
+        "nodeId": "s=z-axis",
+        "browseName": "Vibration on Z Axis",
+        "dataType": "Int32",
+        "axis": "z"
+    },
+
 ]

@@ -1,5 +1,6 @@
 require('dotenv').config()
 const calcRMS = require('./rms.js').calcRMS
+var RMS;
 function convertStringToUTF8ByteArray(str) {
     let binaryArray = new Int8Array(str.length)
     Array.prototype.forEach.call(binaryArray, function (el, idx, arr) { arr[idx] = str.charCodeAt(idx) })
@@ -19,26 +20,15 @@ parser.on('data',
     function (bucket) {
         if (bucket.length == 1538) {
             let myByteArray = convertStringToUTF8ByteArray(bucket.substring(0, 1536));
-            let RMS = calcRMS(myByteArray);
-            console.log(RMS)
+            RMS = calcRMS(myByteArray);
+            console.log(`X: ${RMS["x"]}`)
+            console.log(`Y: ${RMS["y"]}`)
+            console.log(`Z: ${RMS["z"]}`)
         }
     }
 )
 
-/*
-  port.on('readable', function () {
-    console.log('Data:', port.read())
-  })
-  
-  // Switches the port into "flowing mode"
-  port.on('data', function (data) {
-    console.log('Data:', data[0])
-  })
- 
-
 const os = require('os')
-
-const a = require('debug')('server.initialize:a');
 const b = require('debug')('addTags:b');
 const opcua = require("node-opcua");
 const tags = require('./tags.json');
@@ -60,7 +50,7 @@ const server = new opcua.OPCUAServer({
 const addTags = () => {
     b('# Adding TAGS')
     const device = namespace.addFolder("ObjectsFolder", {
-        browseName: "Fake PLC"
+        browseName: "Alexander Pressure Sensor"
     });
 
     for (var i = 0; i < tags.length; i++) {
@@ -68,12 +58,7 @@ const addTags = () => {
         let nodeId = tags[i].nodeId;
         let browseName = tags[i].browseName;
         let dataType = tags[i].dataType;
-        let func = tags[i].func;
-        let seed = 0
-        if (tags[i].hasOwnProperty(seed))
-            seed = tags[i].seed
-
-        let value = 0;
+        let value = RMS[tags[i].pos];
 
         namespace.addVariable({
             componentOf: device,
