@@ -4,16 +4,20 @@ const SerialPort = require('serialport')
 
 const port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 500000
-  })
-  
+})
+
 const Readline = require('@serialport/parser-readline')
-const parser = port.pipe(new Readline({ delimiter: [0x5e, 0xc0]}))
-parser.on('data', 
-function(x){
-console.log('BYTE: ', x.length)}
+const parser = port.pipe(new Readline({
+    delimiter: [0x5e, 0xc0]
+}))
+parser.on('data',
+    function (x) {
+        console.log('BYTE: ', x.length),
+            console.log(typeof x)
+    }
 )
 
- /*
+/*
   port.on('readable', function () {
     console.log('Data:', port.read())
   })
