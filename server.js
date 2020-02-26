@@ -10,16 +10,6 @@ const port = new SerialPort('/dev/ttyUSB0', {
   const parser = port.pipe(new ByteLength({length: 1580}))
   parser.on('data', console.log)
 
-  port.on('readable', function () {
-    console.log('Data:', port.read())
-  })
-  
-  // Switches the port into "flowing mode"
-  port.on('data', function (data) {
-    console.log('Data:', data)
-  })
-  
-  */
 const os = require('os')
 
 const a = require('debug')('server.initialize:a');
