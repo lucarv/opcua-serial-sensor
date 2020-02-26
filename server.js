@@ -1,11 +1,12 @@
 require('dotenv').config()
 const SerialPort = require('serialport')
-const Delimiter = require('@serialport/parser-delimiter')
+const Readline = require('@serialport/parser-readline')
 const port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 500000
 })
-const parser = port.pipe(new Delimiter({ delimiter: 0xff }))
-parser.on('data', console.log) // emits data after every '\n'
+const parser = new Readline()
+port.pipe(parser)
+parser.on('data', console.log)
 
 const os = require('os')
 
