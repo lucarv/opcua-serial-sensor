@@ -1,11 +1,15 @@
 require('dotenv').config()
+
+function convertStringToUTF8ByteArray(str) {
+    let binaryArray = new Uint8Array(str.length)
+    Array.prototype.forEach.call(binaryArray, function (el, idx, arr) { arr[idx] = str.charCodeAt(idx) })
+    return binaryArray
+}
+
 const SerialPort = require('serialport')
-
-
 const port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 500000
 })
-
 const Readline = require('@serialport/parser-readline')
 const parser = port.pipe(new Readline({
     delimiter: [0x5e, 0xc0]
@@ -14,9 +18,8 @@ const parser = port.pipe(new Readline({
 parser.on('data',
     function (bucket) {
         if (bucket.length == 1538) {
-            for (var j = 1; j < 1537; j++)
-                process.stdout.write(parseInt(bucket.substring(0, j)))
-            console.log('.....')
+            let myByteArray = convertStringToUTF8ByteArray(bucket);
+            console.log(myByteArray)
         }
     }
 )
