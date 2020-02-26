@@ -15,7 +15,7 @@ parser.on('data',
     function (bucket) {
         if (bucket.length == 1538) {
             for (var j = 1; j < 1537; j++)
-                process.stdout(parseInt(bucket.substring(0, j)))
+                process.stdout.write(parseInt(bucket.substring(0, j)))
             console.log('.....')
         }
     }
