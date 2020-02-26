@@ -66,9 +66,7 @@ const addTags = () => {
                 get: function () {
                     console.log('...........................................')
                     var idx = tags.findIndex(i => i.nodeId === nodeId);
-                    if (tags[idx].hasOwnProperty('func')) {
-                        value = eval(func)
-                    }
+                    value = RMS[tags[idx].axis]
                     console.log(`value calculated for ${nodeId}: ${value}`);
                     return new opcua.Variant({
                         dataType: dataType,
