@@ -1,5 +1,5 @@
 require('dotenv').config()
-
+const calcRMS = require('./rms.js').calcRMS
 function convertStringToUTF8ByteArray(str) {
     let binaryArray = new Int8Array(str.length)
     Array.prototype.forEach.call(binaryArray, function (el, idx, arr) { arr[idx] = str.charCodeAt(idx) })
@@ -19,7 +19,8 @@ parser.on('data',
     function (bucket) {
         if (bucket.length == 1538) {
             let myByteArray = convertStringToUTF8ByteArray(bucket);
-            console.log(myByteArray)
+            let RMS = calcRMS(myByteArray);
+            console.log(RMS)
         }
     }
 )
