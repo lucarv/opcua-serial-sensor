@@ -1,13 +1,14 @@
 require('dotenv').config()
 const SerialPort = require('serialport')
-
-
 const port = new SerialPort('/dev/ttyUSB0', {
     baudRate: 500000
   })
 
-const Readline = require('@serialport/parser-readline')
-
+  const ByteLength = require('@serialport/parser-byte-length')
+  const port = new SerialPort('/dev/tty-usbserial1')
+  
+  const parser = port.pipe(new ByteLength({length: 1580}))
+  parser.on('data', console.log)
 
   port.on('readable', function () {
     console.log('Data:', port.read())
@@ -27,11 +28,11 @@ const opcua = require("node-opcua");
 const tags = require('./tags.json');
 var addressSpace, namespace;
 
-let port = process.env.PORT
+let opc_port = process.env.PORT
 // Let's create an instance of OPCUAServer
 const server = new opcua.OPCUAServer({
     alternateHostname: process.env.HOSTNAME,
-    port: port, // the port of the listening socket of the server
+    port: opc_port, // the port of the listening socket of the server
     resourcePath: process.env.RESOURCEPATH, // this path will be added to the endpoint resource name
     buildInfo: {
         productName: "hbvu simple server",
