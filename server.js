@@ -4,6 +4,7 @@ var RMS;
 
 const genVal = () => {
     process.stdout.write('.')
+    let array = [];
     for (var i = 0; i < 512 * 3; i++)
         array.push(Math.random())
     let result = calcRMS(array);
