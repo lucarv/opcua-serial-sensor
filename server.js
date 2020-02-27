@@ -39,7 +39,7 @@ if (process.env.MODE == 'serial') {
         }
     )
 } else {
-    setInterval(genVal(), 300)
+    setInterval(genVal, 300)
 }
 
 
