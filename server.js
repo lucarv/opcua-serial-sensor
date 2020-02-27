@@ -7,7 +7,7 @@ const genVal = () => {
     let array = [];
     for (var i = 0; i < 512 * 3; i++)
         array.push(Math.random())
-    let result = calcRMS(array);
+    RMS = calcRMS(array);
     console.log(result)
 }
 
@@ -73,6 +73,7 @@ const addTags = () => {
         let nodeId = tags[i].nodeId;
         let browseName = tags[i].browseName;
         let dataType = tags[i].dataType;
+        let axis = tags[i].axis;
         let value = RMS[tags[i].axis];
 
         namespace.addVariable({
