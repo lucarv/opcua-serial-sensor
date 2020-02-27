@@ -8,7 +8,6 @@ const genVal = () => {
     for (var i = 0; i < 512 * 3; i++)
         array.push(Math.random())
     RMS = calcRMS(array);
-    console.log(result)
 }
 
 
