@@ -1,29 +1,46 @@
 require('dotenv').config()
 const calcRMS = require('./rms.js').calcRMS
 var RMS;
+
+const genVal = () => {
+    process.stdout.write('.')
+    for (var i = 0; i < 512 * 3; i++)
+        array.push(Math.random())
+    let result = calcRMS(array);
+    console.log(result)
+}
+
+
 function convertStringToUTF8ByteArray(str) {
     let binaryArray = new Int8Array(str.length)
-    Array.prototype.forEach.call(binaryArray, function (el, idx, arr) { arr[idx] = str.charCodeAt(idx) })
+    Array.prototype.forEach.call(binaryArray, function (el, idx, arr) {
+        arr[idx] = str.charCodeAt(idx)
+    })
     return binaryArray
 }
 
-const SerialPort = require('serialport')
-const port = new SerialPort('/dev/ttyUSB0', {
-    baudRate: 500000
-})
-const Readline = require('@serialport/parser-readline')
-const parser = port.pipe(new Readline({
-    delimiter: [0x5e, 0xc0]
-}))
+if (process.env.MODE == 'serial') {
+    const SerialPort = require('serialport')
+    const port = new SerialPort('/dev/ttyUSB0', {
+        baudRate: 500000
+    })
+    const Readline = require('@serialport/parser-readline')
+    const parser = port.pipe(new Readline({
+        delimiter: [0x5e, 0xc0]
+    }))
 
-parser.on('data',
-    function (bucket) {
-        if (bucket.length == 1538) {
-            let myByteArray = convertStringToUTF8ByteArray(bucket.substring(0, 1536));
-            RMS = calcRMS(myByteArray);
+    parser.on('data',
+        function (bucket) {
+            if (bucket.length == 1538) {
+                let myByteArray = convertStringToUTF8ByteArray(bucket.substring(0, 1536));
+                RMS = calcRMS(myByteArray);
+            }
         }
-    }
-)
+    )
+} else {
+    setInterval(genVal(), 300)
+}
+
 
 const os = require('os')
 const b = require('debug')('addTags:b');
@@ -77,8 +94,8 @@ const addTags = () => {
                     if (tags[idx].hasOwnProperty('storedValue')) {
                         console.log('...........................................')
                         console.log(`value set for ${nodeId}: ${variant.value}`);
-                            tags[idx].storedValue = parseInt(variant.value);
-                    return opcua.StatusCodes.Good;
+                        tags[idx].storedValue = parseInt(variant.value);
+                        return opcua.StatusCodes.Good;
                     } else return opcua.statusCodes.Bad
                 }
             }
