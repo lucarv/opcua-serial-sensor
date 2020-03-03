@@ -1,5 +1,3 @@
-const rms = (accumulator, currentValue) => accumulator + currentValue * currentValue;
-
 var RMS = {
   "x": 0,
   "y": 0,
@@ -19,6 +17,22 @@ const calcRMS = (readings) => {
     zs.push(readings[i + 2]);
   }
 
+  let array = []
+      let Squares = xs.map((val) => (val * val));
+      let Sum = Squares.reduce((acum, val) => (acum + val));
+      let Mean = Sum/values[i].length; 
+  RMS.x = Mean
+  array = []
+      let Squares = xs.map((val) => (val * val));
+      let Sum = Squares.reduce((acum, val) => (acum + val));
+      let Mean = Sum/values[i].length; 
+  RMS.y = Mean
+  array = []
+      let Squares = xs.map((val) => (val * val));
+      let Sum = Squares.reduce((acum, val) => (acum + val));
+      let Mean = Sum/values[i].length; 
+  RMS.z = Mean
+  return RMS;
 
   if (xs.length > 0) {
     x = xs.reduce(rms) / xs.length;

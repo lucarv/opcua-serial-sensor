@@ -1,23 +1,22 @@
 require('dotenv').config()
-const calcRMS = require('./rms.js').calcRMS
-var RMS;
+const getValues = require('./math.js').getValues
+const convertStringToUTF8ByteArray = require('./math.js').convertStringToUTF8ByteArray
+const vector2matrix = require('./math.js').vector2matrix
+
+var xyz = [];
+
 
 const genVal = () => {
     process.stdout.write('.')
     let array = [];
     for (var i = 0; i < 512 * 3; i++)
         array.push(Math.random())
-    RMS = calcRMS(array);
+
+    xyz = vector2matrix(array)
+    let values = getValues(xyz);
+    console.log(values)
 }
 
-
-function convertStringToUTF8ByteArray(str) {
-    let binaryArray = new Int8Array(str.length)
-    Array.prototype.forEach.call(binaryArray, function (el, idx, arr) {
-        arr[idx] = str.charCodeAt(idx)
-    })
-    return binaryArray
-}
 
 if (process.env.MODE == 'serial') {
     const SerialPort = require('serialport')
@@ -33,12 +32,12 @@ if (process.env.MODE == 'serial') {
         function (bucket) {
             if (bucket.length == 1538) {
                 let myByteArray = convertStringToUTF8ByteArray(bucket.substring(0, 1536));
-                RMS = calcRMS(myByteArray);
+                values = getValues(vector2matrix(myByteArray));
             }
         }
     )
 } else {
-    setInterval(genVal, 300)
+    setInterval(genVal, 3000)
 }
 
 
@@ -122,4 +121,4 @@ const f = () => {
     server.start(g)
 }
 
-server.initialize(f)
+//server.initialize(f)

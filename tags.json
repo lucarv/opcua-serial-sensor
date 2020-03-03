@@ -1,21 +1,76 @@
 [
     {
-        "nodeId": "s=x-axis",
-        "browseName": "Vibration on X Axis",
+        "nodeId": "s=stddevx",
+        "browseName": "Standard Deviation on X Axis",
         "dataType": "Double",
         "axis": "x"
     },
     {
-        "nodeId": "s=y-axis",
-        "browseName": "Vibration on Y Axis",
+        "nodeId": "s=stddevy",
+        "browseName": "Standard Deviation on Y Axis",
         "dataType": "Double",
         "axis": "y"
     },
     {
-        "nodeId": "s=z-axis",
-        "browseName": "Vibration on Z Axis",
+        "nodeId": "s=stddevz",
+        "browseName": "Standard Deviation on Z Axis",
         "dataType": "Double",
         "axis": "z"
+    },
+    {
+        "nodeId": "s=avgx",
+        "browseName": "Average on X Axis",
+        "dataType": "Double",
+        "axis": "x"
+    },
+    {
+        "nodeId": "s=avgy",
+        "browseName": "Average on Y Axis",
+        "dataType": "Double",
+        "axis": "y"
+    },
+    {
+        "nodeId": "s=avgz",
+        "browseName": "Average on Z Axis",
+        "dataType": "Double",
+        "axis": "z"
+    },
+    {
+        "nodeId": "s=stdavg",
+        "browseName": "Standard Average Vector",
+        "dataType": "Double"
+    },
+    {
+        "nodeId": "s=p2px",
+        "browseName": "Peak to Peak on X Axis",
+        "dataType": "Double",
+        "axis": "x"
+    },
+    {
+        "nodeId": "s=p2py",
+        "browseName": "Peak to Peak on Y Axis",
+        "dataType": "Double",
+        "axis": "y"
+    },
+    {
+        "nodeId": "s=p2pz",
+        "browseName": "Peak to Peak on Z Axis",
+        "dataType": "Double",
+        "axis": "z"
+    },
+    {
+        "nodeId": "s=avgvector",
+        "browseName": "Average Vector",
+        "dataType": "Double"
+    },
+    {
+        "nodeId": "s=stddevvector",
+        "browseName": "Standard Deviation Vector",
+        "dataType": "Double"
+    },
+    {
+        "nodeId": "s=avgp2p",
+        "browseName": "Average Peak to Peak",
+        "dataType": "Double"
     }
-
 ]
